@@ -9,14 +9,14 @@ script:
  - docker run -e CI=true schoenja/react-test npm test
 
 after_success:
- - docker build -t schoenja/multi-client ./client
- - docker build -t schoenja/multi-nginx ./nginx
-- docker build -t schoenja/multi-server ./server
-- docker build -t schoenja/multi-worker ./worker
+  - docker build -t schoenja/multi-client ./client
+  - docker build -t schoenja/multi-nginx ./nginx
+  - docker build -t schoenja/multi-server ./server
+  - docker build -t schoenja/multi-worker ./worker
 #log in to docker cli
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
 #take images and push to docker hub
-- docker push schoenja/multi-client
-- docker push schoenja/multi-nginx
-- docker push schoenja/multi-server
-- docker push schoenja/multi-worker
+  - docker push schoenja/multi-client
+  - docker push schoenja/multi-nginx
+  - docker push schoenja/multi-server
+  - docker push schoenja/multi-worker
